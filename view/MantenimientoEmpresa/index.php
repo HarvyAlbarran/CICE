@@ -49,7 +49,7 @@ if (isset($_SESSION["usu_id"])) {
 
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Nuevo Registro <small>Empresa</small></h3>
+                            <h3 class="block-title">Nuevos Registros <small>Empresa</small></h3>
                         </div>
                         <div class="block-content block-content-full">
                             <form method="post" id="empresa_form">
