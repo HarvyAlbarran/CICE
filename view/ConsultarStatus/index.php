@@ -60,7 +60,7 @@
                                         <th style="width: 15%;">Fecha</th>
                                         <th class="d-none d-sm-table-cell" style="width: 20%;">Asunto</th>
                                         <th class="d-none d-sm-table-cell" style="width: 65%;">Descripción</th>
-                                        <th class="text-center" style="width: 15%;"></th>
+                                        <th class="text-center" style="width: 15%;">Detalle</th>
                                     </tr>
                                 </thead>
                                 <tbody>

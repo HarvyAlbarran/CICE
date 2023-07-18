@@ -85,7 +85,7 @@ if (isset($_SESSION["usu_id"])) {
 
 
                                 <div class="col-6 text-right">
-                                    <button type="button" class="btn btn-alt-primary" id="btnguardar">
+                                    <button type="button" class="btn btn-alt-primary" id="btnguardarEmpresa">
                                         Guardar <i class="fa fa-save ml-5"></i>
                                     </button>
                                 </div>
@@ -105,10 +105,8 @@ if (isset($_SESSION["usu_id"])) {
                                         <th class="text-center">ruc</th>
                                         <th class="text-center">correo</th>
                                         <th class="text-center">descripción</th>
+                                        <th class="text-center">dirección</th>
                                         <th class="text-center">representante</th>
-                                        <th class="text-center">Observación</th>
-
-                                        <th class="text-center" style="width: 15%;">Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,15 +118,13 @@ if (isset($_SESSION["usu_id"])) {
                 </div>
             </main>
 
-            <!-- <?php require_once("modalarchivo.php"); ?> -->
-
             <?php require_once("../MainFooter/MainFooter.php"); ?>
 
         </div>
 
         <?php require_once("../MainJs/MainJs.php"); ?>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script type="text/javascript" src="nuevoregistro.js"></script>
+        <script type="text/javascript" src="registrar_empresa.js"></script>
     </body>
 
     </html>
