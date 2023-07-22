@@ -1,7 +1,9 @@
 <?php
     require_once("../config/conexion.php");
     require_once("../models/Partes.php");
+    require_once("../models/TipoLicitacion.php");
     $partes = new Partes();
+    $tipos = new Tipos();
 
     switch($_GET["op"]){
 
@@ -84,6 +86,20 @@
                 "iTotalDisplayRecords"=>count($data),
                 "aaData"=>$data);
             echo json_encode($results);
+        break;
+
+        case "list_combo_tipo":
+            $datos=$tipos->list_combo_tipo();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["tip_id"];
+                $sub_array[] = $row["tip_nom"];
+                
+                $data[] = $sub_array;
+            }
+
+            echo json_encode($data);
         break;
 
     }

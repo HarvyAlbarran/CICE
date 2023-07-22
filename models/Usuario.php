@@ -38,7 +38,7 @@
 		public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_usuario values (NULL,?,?,?,?,NULL, NULL, NULL, '1');";
+            $sql="INSERT INTO tm_usuario values (NULL,?,?,?,?, now(), NULL, NULL, '1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1,$usu_nom);
             $sql->bindValue(2,$usu_ape);
@@ -46,6 +46,15 @@
 			$sql->bindValue(4,$usu_pass);
             $sql->execute();
 		}
+
+		public function list_usuario(){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM tm_usuario WHERE est=1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
+        }
 		
 		public function get_correo_usuario($usu_correo){
             $conectar= parent::conexion();

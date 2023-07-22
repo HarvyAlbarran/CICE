@@ -7,7 +7,7 @@ if (isset($_SESSION["usu_id"])) {
 
     <head>
         <?php require_once("../MainHead/MainHead.php"); ?>
-        <title>Registro Empresa| Consultoría CICE</title>
+        <title>Registro Tipo Licitación| Consultoría CICE</title>
     </head>
 
     <body>
@@ -49,44 +49,39 @@ if (isset($_SESSION["usu_id"])) {
 
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Nuevo Registro <small>Empresa</small></h3>
+                            <h3 class="block-title">Nuevo Registro <small>Tipo de licitación</small></h3>
                         </div>
                         <div class="block-content block-content-full">
                             <form method="post" id="empresa_form">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label for="emp_nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="emp_nombre" name="emp_nombre" placeholder="Ingrese el nombre de la empresa">
+                                        
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="emp_ruc">Ruc</label>
-                                        <input type="text" class="form-control" id="emp_ruc" name="emp_ruc" placeholder="Ingrese el RUC de la empresa">
+                                        <label for="tip_nom">Tipo de licitación</label>
+                                        <input type="text" class="form-control" id="tip_nom" name="tip_nom" placeholder="Ingrese el tipo de licitación">
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="emp_correo">Correo</label>
-                                        <input type="email" class="form-control" id="emp_correo" name="emp_correo" placeholder="Ingrese el correo de la empresa">
+                                    
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label for="emp_descripcion">Descripción</label>
-                                        <input type="text" class="form-control" id="emp_descripcion" name="emp_descripcion" placeholder="Ingrese una pequeña descripción">
+                                        
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="emp_direccion">Dirección</label>
-                                        <input type="text" class="form-control" id="emp_direccion" name="emp_direccion" placeholder="Ingrese la dirección de la empresa">
+                                        
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="emp_representante">Representante</label>
-                                        <input type="text" class="form-control" id="emp_representante" name="emp_representante" placeholder="Ingrese el representante legal">
+                                    
                                     </div>
                                 </div>
 
 
-                                <div class="col-6 text-right">
-                                    <button type="button" class="btn btn-alt-primary" id="btnguardarEmpresa">
-                                        Guardar <i class="fa fa-save ml-5"></i>
+                                <div class="col-md-7 text-right">
+                                    <button type="button" class="btn btn-alt-primary" id="btnguardarTipo">
+                                        Guardar <i class="fa fa-save mr-5"></i>
                                     </button>
                                 </div>
                             </form>
@@ -95,18 +90,13 @@ if (isset($_SESSION["usu_id"])) {
 
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Listado de Información de Empresas</h3>
+                            <h3 class="block-title">Listado de Información de Tipos de licitaciones</h3>
                         </div>
                         <div class="block-content block-content-full">
-                            <table id="detalle_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                            <table id="listado_tipo" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">nombre</th>
-                                        <th class="text-center">ruc</th>
-                                        <th class="text-center">correo</th>
-                                        <th class="text-center">descripción</th>
-                                        <th class="text-center">dirección</th>
-                                        <th class="text-center">representante</th>
+                                        <th class="text-center">Tipo de Licitacion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -124,7 +114,7 @@ if (isset($_SESSION["usu_id"])) {
 
         <?php require_once("../MainJs/MainJs.php"); ?>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script type="text/javascript" src="registrar_empresa.js"></script>
+        <script type="text/javascript" src="registrar_tipo.js"></script>
     </body>
 
     </html>
