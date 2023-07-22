@@ -5,6 +5,36 @@
 
     switch($_GET["op"]){
 
+        case "insert":
+            $datos = $usuario->insert_usuario(
+                $_POST["usu_nom"],
+                $_POST["usu_ape"],
+                $_POST["usu_correo"],
+                $_POST["usu_pass"]
+            );
+        break;
+
+        case "listar":
+            $datos=$usuario->list_usuario();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["usu_nom"];
+                $sub_array[] = $row["usu_ape"];
+                $sub_array[] = $row["usu_correo"];
+                $sub_array[] = $row["usu_pass"];
+                
+                $data[] = $sub_array;
+            }
+        
+            $results = array(
+                "sEcho"=>1,
+                "iTotalRecords"=>count($data),
+                "iTotalDisplayRecords"=>count($data),
+                "aaData"=>$data);
+            echo json_encode($results);
+        break;
+
         case "guardar":
             $datos = $usuario->get_correo_usuario($_POST["usu_correo"]);
             if($_POST["usu_pass1"] == $_POST["usu_pass2"]){

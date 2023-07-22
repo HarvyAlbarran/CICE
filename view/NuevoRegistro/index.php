@@ -67,6 +67,38 @@ if (isset($_SESSION["usu_id"])) {
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="">Tipo de Licitación</label>
+                                    <select class="form-control" id="cbm_tipo" name="cbm_tipo" style="width:100%">
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Empresa</label>
+                                    <select class="form-control" id="cbm_empresa" name="cbm_empresa" style="width:100%">
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Proceso</label>
+                                    <select class="form-control" id="cbm_proceso" name="cbm_proceso" style="width:100%">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="">Fecha de publicación</label>
+                                    <input type="date" id="txt_finicio" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Fecha de cierre</label>
+                                    <input type="date" id="txt_ffin" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Estado</label>
+                                    <select class="form-control" id="cbm_estado" name="cbm_estado" style="width:100%">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-12" for="part_desc">Descripción</label>
                                 <div class="col-12">
                                     <textarea class="form-control" id="part_desc" name="part_desc" rows="6" placeholder="Descripción de la licitación a guardar"></textarea>
