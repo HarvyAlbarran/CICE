@@ -4,7 +4,7 @@
         public function insert_partes($usu_id){
             $conectar=parent::conexion();
             parent::set_names();
-            $sql="insert into tm_partes values (null, ?, null,null,null,now(),null,null,2);";
+            $sql="insert into tm_partes values (null, ?, null,null,null,null,null,null,null,null,null,now(),null,null,2);";
             $sql=$conectar->prepare($sql);
             $sql->bindvalue(1, $usu_id);
             $sql->execute();
@@ -15,13 +15,30 @@
             return $resultado=$sql1->fetchall(pdo::FETCH_ASSOC);
         }
 
-        public function update_partes($part_id,$part_asun,$part_presu,$part_desc){
+        public function update_partes(
+            $part_id,
+            $part_asun,
+            $part_presu,
+            $part_desc,
+            $tip_id,
+            $emp_id,
+            $proc_id,
+            $est_id,
+            $fech_inicio,
+            $fech_fin,
+        ){
             $conectar=parent::conexion();
             parent::set_names();
             $sql2="update tm_partes set
                     part_asun=?,
                     part_presu=?,
                     part_desc=?,
+                    emp_id=?,
+                    est_id=?,
+                    proc_id=?,
+                    tip_id=?,
+                    fech_inicio=?,
+                    fech_fin=?,
                     est=1
                 where
                     part_id=?;";
@@ -29,7 +46,13 @@
             $sql2->bindvalue(1, $part_asun);
             $sql2->bindvalue(2, $part_presu);
             $sql2->bindvalue(3, $part_desc);
-            $sql2->bindvalue(4, $part_id);
+            $sql2->bindvalue(4, $emp_id);
+            $sql2->bindvalue(5, $est_id);
+            $sql2->bindvalue(6, $proc_id);
+            $sql2->bindvalue(7, $tip_id);
+            $sql2->bindvalue(8, $fech_inicio);
+            $sql2->bindvalue(9, $fech_fin);
+            $sql2->bindvalue(10, $part_id);
             $sql2->execute();
         }
 

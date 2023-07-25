@@ -69,32 +69,32 @@ if (isset($_SESSION["usu_id"])) {
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     <label for="">Tipo de Licitación</label>
-                                    <select class="form-control" id="cbm_tipo" name="cbm_tipo" style="width:100%">
+                                    <select class="form-control" id="tip_id"  style="width:100%">
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Empresa</label>
-                                    <select class="form-control" id="cbm_empresa" name="cbm_empresa" style="width:100%">
+                                    <select class="form-control" id="emp_id"  style="width:100%">
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Proceso</label>
-                                    <select class="form-control" id="cbm_proceso" name="cbm_proceso" style="width:100%">
+                                    <select class="form-control" id="proc_id"  style="width:100%">
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     <label for="">Fecha de publicación</label>
-                                    <input type="date" id="txt_finicio" class="form-control">
+                                    <input type="date" id="fech_inicio" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Fecha de cierre</label>
-                                    <input type="date" id="txt_ffin" class="form-control">
+                                    <input type="date" id="fech_fin" class="form-control">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Estado</label>
-                                    <select class="form-control" id="cbm_estado" name="cbm_estado" style="width:100%">
+                                    <select class="form-control" id="est_id" style="width:100%">
                                     </select>
                                 </div>
                             </div>

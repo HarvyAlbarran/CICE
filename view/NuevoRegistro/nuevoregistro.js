@@ -9,6 +9,9 @@ function init() {
 $(document).ready(function () {
 
     list_combo_tipo();
+    list_combo_empresa();
+    list_combo_proceso();
+    list_combo_estado();
 
     $.post("../../controller/partes.php?op=insert", { usu_id: usu_id }, function (data) {
         data = JSON.parse(data);
@@ -45,18 +48,36 @@ $(document).on("click", "#btnguardar", function () {
     var part_asun = $('#part_asun').val();
     var part_presu = $('#part_presu').val();
     var part_desc = $('#part_desc').val();
+    var tip_id = $('#tip_id').val();
+    var emp_id = $('#emp_id').val();
+    var proc_id = $('#proc_id').val();
+    var est_id = $('#est_id').val();
+    var fech_inicio = $('#fech_inicio').val();
+    var fech_fin = $('#fech_fin').val();
 
     var usu_nom = $('#usernomx').val();
     var usu_ape = $('#userapex').val();
 
-    if (part_asun == '' || part_desc == '') {
+    if (part_asun == '' || part_presu == ''|| fech_inicio == ''|| fech_fin == '') {
         Swal.fire(
             'Consultoría CICE',
             'Campos Vacios',
             'error'
         );
     } else {
-        $.post("../../controller/partes.php?op=update", { part_id: part_id, part_asun: part_asun, part_presu: part_presu, part_desc: part_desc }, function (data) {
+        $.post("../../controller/partes.php?op=update", { 
+                part_id: part_id,
+                part_asun: part_asun,
+                part_presu: part_presu,
+                part_desc: part_desc,
+                tip_id: tip_id,
+                emp_id: emp_id,
+                proc_id: proc_id,
+                est_id: est_id,
+                fech_inicio: fech_inicio,
+                fech_fin: fech_fin 
+
+            }, function (data) {
             let timerInterval;
             Swal.fire({
                 title: 'Consultoría CICE',
@@ -169,14 +190,96 @@ function list_combo_tipo() {
                 
             }
 
-            document.getElementById('cbm_tipo').innerHTML= cadena;
+            document.getElementById('tip_id').innerHTML= cadena;
 
         }else{
-            document.getElementById('cbm_tipo').innerHTML= "No se encontraron datos";
+            document.getElementById('tip_id').innerHTML= "No se encontraron datos";
         }
 
 
     })
 }
+
+function list_combo_empresa(){
+
+    $.ajax({
+
+        url:"../../controller/partes.php?op=list_combo_empresa",
+        type:'POST',
+
+    }).done(function(data){
+
+        data = JSON.parse(data);
+        cadena = "";
+
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                cadena += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                
+            }
+
+            document.getElementById('emp_id').innerHTML= cadena;
+
+        }else{
+            document.getElementById('emp_id').innerHTML= "No se encontraron datos";
+        }
+
+
+    })
+
+}
+
+function list_combo_proceso(){
+     $.ajax({
+
+        url:"../../controller/partes.php?op=list_combo_proceso",
+        type:'POST',
+
+    }).done(function(data){
+
+        data = JSON.parse(data);
+        cadena = "";
+
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                cadena += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                
+            }
+
+            document.getElementById('proc_id').innerHTML= cadena;
+
+        }else{
+            document.getElementById('proc_id').innerHTML= "No se encontraron datos";
+        }
+
+
+    })
+};
+function list_combo_estado(){
+     $.ajax({
+
+        url:"../../controller/partes.php?op=list_combo_estado",
+        type:'POST',
+
+    }).done(function(data){
+
+        data = JSON.parse(data);
+        cadena = "";
+
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                cadena += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                
+            }
+
+            document.getElementById('est_id').innerHTML= cadena;
+
+        }else{
+            document.getElementById('est_id').innerHTML= "No se encontraron datos";
+        }
+
+
+    })
+};
 
 init();
