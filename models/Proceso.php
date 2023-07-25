@@ -23,5 +23,14 @@
             return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
         }
 
+        public function list_combo_proceso(){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql="SELECT proc_id, proc_nom FROM tm_proceso WHERE est=1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
+        }
+
     }
 ?>

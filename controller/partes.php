@@ -2,8 +2,15 @@
     require_once("../config/conexion.php");
     require_once("../models/Partes.php");
     require_once("../models/TipoLicitacion.php");
+    require_once("../models/Empresas.php");
+    require_once("../models/Proceso.php");
+    require_once("../models/Estado.php");
+
     $partes = new Partes();
     $tipos = new Tipos();
+    $empresas = new Empresas();
+    $procesos = new Procesos();
+    $estados = new Estados();
 
     switch($_GET["op"]){
 
@@ -19,7 +26,18 @@
         break;
 
         case "update":
-            $partes->update_partes($_POST["part_id"],$_POST["part_asun"],$_POST["part_presu"],$_POST["part_desc"]);
+            $partes->update_partes(
+                $_POST["part_id"],
+                $_POST["part_asun"],
+                $_POST["part_presu"],
+                $_POST["part_desc"],
+                $_POST["tip_id"],
+                $_POST["emp_id"],
+                $_POST["proc_id"],
+                $_POST["est_id"],
+                $_POST["fech_inicio"],
+                $_POST["fech_fin"],
+            );
         break;
 
         case "insertdetalle":
@@ -95,6 +113,48 @@
                 $sub_array = array();
                 $sub_array[] = $row["tip_id"];
                 $sub_array[] = $row["tip_nom"];
+                
+                $data[] = $sub_array;
+            }
+
+            echo json_encode($data);
+        break;
+
+        case "list_combo_empresa":
+            $datos=$empresas->list_combo_empresa();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["emp_id"];
+                $sub_array[] = $row["emp_nombre"];
+                
+                $data[] = $sub_array;
+            }
+
+            echo json_encode($data);
+        break;
+
+        case "list_combo_proceso":
+            $datos=$procesos->list_combo_proceso();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["proc_id"];
+                $sub_array[] = $row["proc_nom"];
+                
+                $data[] = $sub_array;
+            }
+
+            echo json_encode($data);
+        break;
+
+        case "list_combo_estado":
+            $datos=$estados->list_combo_estado();
+            $data= Array();
+            foreach($datos as $row){
+                $sub_array = array();
+                $sub_array[] = $row["est_id"];
+                $sub_array[] = $row["est_nom"];
                 
                 $data[] = $sub_array;
             }

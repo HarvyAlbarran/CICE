@@ -23,5 +23,14 @@
             return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
         }
 
+        public function list_combo_estado(){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql="SELECT est_id , est_nom FROM tm_estado WHERE est=1;";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
+        }
+
     }
 ?>
