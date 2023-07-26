@@ -54,7 +54,7 @@ $(document).on("click","#btnguardarUsuario", function(){
     }
 });
 
-
+var tabla;
 
 $(document).ready(function(){
     tabla= $('#listado_usuario').DataTable({
@@ -99,5 +99,126 @@ $(document).ready(function(){
         },
     });
 });
+
+$('#listado_usuario').on('click', '.edit', function () {
+
+    var data = tabla.row($(this).parents('tr')).data();
+    if (tabla.row(this).child.isShown()) {
+        var data = tabla.row(this).data();
+    }
+
+    $("#modaleditusuario").modal('show');
+
+    document.getElementById('usu_id_edit').value = data[6];
+    document.getElementById('usu_nom_edit').value = data[1];
+    document.getElementById('usu_ape_edit').value = data[2];
+    document.getElementById('usu_correo_edit').value = data[3];
+    document.getElementById('usu_pass_edit').value = data[4];
+
+})
+
+$('#listado_usuario').on('click', '.delete', function () {
+
+    var data = tabla.row($(this).parents('tr')).data();
+    if (tabla.row(this).child.isShown()) {
+        var data = tabla.row(this).data();
+    }
+
+    Swal.fire({
+        title: '¿Desea eliminar al usuario?',
+        text: "Está seguro de eliminar al usuario!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si'
+    }).then((result) => {
+
+        Eliminar_usuario(data[6]);
+    })
+})
+
+function Actualizar_usuario() {
+
+    var usu_id = document.getElementById('usu_id_edit').value;
+    var usu_nom = document.getElementById('usu_nom_edit').value;
+    var usu_ape = document.getElementById('usu_ape_edit').value;
+    var usu_correo = document.getElementById('usu_correo_edit').value;
+    var usu_pass = document.getElementById('usu_pass_edit').value;
+    
+
+    $.post("../../controller/usuario.php?op=update", {
+        usu_id: usu_id,
+        usu_nom: usu_nom,
+        usu_ape: usu_ape,
+        usu_correo: usu_correo,
+        usu_pass: usu_pass,
+
+    }, function (data) {
+        let timerInterval;
+        Swal.fire({
+            title: 'Consultoría CICE',
+            html: 'Actualizando Registro...Espere..<b></b>.',
+            timer: 1500,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent();
+                    if (content) {
+                        const b = content.querySelector('b');
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft();
+                        }
+                    }
+                }, 100);
+            },
+            onClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                location.reload();
+            }
+        });
+    });
+}
+
+function Eliminar_usuario(usu_id) {
+
+    $.post("../../controller/usuario.php?op=delete", {
+        usu_id: usu_id,
+        est:2
+
+    }, function(resp){
+        let timerInterval;
+        Swal.fire({
+            title: 'Consultoría CICE',
+            html: 'Eliminando Registro...Espere..<b></b>.',
+            timer: 900,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent();
+                    if (content) {
+                        const b = content.querySelector('b');
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft();
+                        }
+                    }
+                }, 100);
+            },
+            onClose: () => {
+                clearInterval(timerInterval);
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                location.reload();
+            }
+        });
+
+    });
+}
 
 init();

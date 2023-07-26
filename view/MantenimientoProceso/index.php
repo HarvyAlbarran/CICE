@@ -96,7 +96,9 @@ if (isset($_SESSION["usu_id"])) {
                             <table id="listado_proceso" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th class="text-center">código</th>
                                         <th class="text-center">Proceso</th>
+                                        <th class="text-center">acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -107,6 +109,36 @@ if (isset($_SESSION["usu_id"])) {
                     </div>
                 </div>
             </main>
+
+            <div id="modaleditproceso" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar proceso</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="#" enctype="multipart/form-data" onsubmit="return false">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="text" id="proc_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label for="">Proceso</label>
+                                        <input type="text" class="form-control" id="proc_nom_edit">
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-primary" onclick="Actualizar_proceso()">Actualizar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <?php require_once("../MainFooter/MainFooter.php"); ?>
 
