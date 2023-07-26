@@ -93,10 +93,12 @@ if (isset($_SESSION["usu_id"])) {
                             <table id="listado_usuario" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
+                                        <th class="text-center">código</th>
                                         <th class="text-center">Nombre</th>
                                         <th class="text-center">Apellido</th>
                                         <th class="text-center">Correo</th>
                                         <th class="text-center">Contraseña</th>
+                                        <th class="text-center">acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -107,6 +109,47 @@ if (isset($_SESSION["usu_id"])) {
                     </div>
                 </div>
             </main>
+
+            <div id="modaleditusuario" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar usuario</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="#" enctype="multipart/form-data" onsubmit="return false">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="text" id="usu_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Nombre</label>
+                                        <input type="text" class="form-control" id="usu_nom_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Apellido</label>
+                                        <input type="text" class="form-control" id="usu_ape_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Correo</label>
+                                        <input type="text" class="form-control" id="usu_correo_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Contraseña</label>
+                                        <input type="text" class="form-control" id="usu_pass_edit">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-primary" onclick="Actualizar_usuario()">Actualizar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <?php require_once("../MainFooter/MainFooter.php"); ?>
 

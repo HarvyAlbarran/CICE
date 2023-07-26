@@ -66,5 +66,49 @@
 			return $resultado=$sql->fetchAll();
         }
 
+		public function update_usuarios(
+            $usu_id,
+            $usu_nom,
+			$usu_ape,
+			$usu_correo,
+			$usu_pass,
+            
+        ){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql2="update tm_usuario set
+					usu_nom=?,
+					usu_ape=?,
+					usu_correo=?,
+					usu_pass=?,
+                    est=1
+                where
+					usu_id=?;";
+            $sql2=$conectar->prepare($sql2);
+            $sql2->bindvalue(1, $usu_nom);
+			$sql2->bindvalue(2, $usu_ape);
+			$sql2->bindvalue(3, $usu_correo);
+			$sql2->bindvalue(4, $usu_pass);
+            $sql2->bindvalue(5, $usu_id);
+            $sql2->execute();
+        }
+
+		public function delete_usuarios(
+            $usu_id,
+            $est
+        ){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql2="update tm_usuario set
+                    est=?
+                where
+					usu_id=?;";
+            $sql2=$conectar->prepare($sql2);
+            $sql2->bindvalue(1, $est);
+            $sql2->bindvalue(2, $usu_id);
+            $sql2->execute();
+
+        }
+
     }
 ?>

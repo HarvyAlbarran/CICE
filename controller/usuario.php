@@ -19,10 +19,13 @@
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
+                $sub_array[] = 'USU-'.$row["usu_id"];
                 $sub_array[] = $row["usu_nom"];
                 $sub_array[] = $row["usu_ape"];
                 $sub_array[] = $row["usu_correo"];
                 $sub_array[] = $row["usu_pass"];
+                $sub_array[] = '<button type="button" class="edit btn btn-outline-success btn-icon"><div><i class="fa fa-pencil"></i></div></button> <button type="button" class="delete btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></button>';
+                $sub_array[] = $row["usu_id"];
                 
                 $data[] = $sub_array;
             }
@@ -51,6 +54,23 @@
         case "correo":
             $datos = $usuario->get_correo_usuario($_POST["usu_correo"]);
             echo json_encode( $datos);
+        break;
+
+        case 'update':
+            $usuario->update_usuarios(
+                $_POST["usu_id"],
+                $_POST["usu_nom"],
+                $_POST["usu_ape"],
+                $_POST["usu_correo"],
+                $_POST["usu_pass"],
+            );
+        break;
+
+        case 'delete':
+            $usuario->delete_usuarios(
+                $_POST["usu_id"],
+                $_POST["est"],
+            );
         break;
 
     }

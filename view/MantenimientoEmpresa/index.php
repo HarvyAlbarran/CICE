@@ -55,7 +55,7 @@ if (isset($_SESSION["usu_id"])) {
                             <form method="post" id="empresa_form">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label for="emp_nombre">Nombre</label>
+                                        <label for="emp_nombre">Empresa</label>
                                         <input type="text" class="form-control" id="emp_nombre" name="emp_nombre" placeholder="Ingrese el nombre de la empresa">
                                     </div>
                                     <div class="col-md-4">
@@ -101,12 +101,14 @@ if (isset($_SESSION["usu_id"])) {
                             <table id="detalle_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">nombre</th>
+                                        <th class="text-center">código</th>
+                                        <th class="text-center">empresa</th>
                                         <th class="text-center">ruc</th>
                                         <th class="text-center">correo</th>
                                         <th class="text-center">descripción</th>
                                         <th class="text-center">dirección</th>
                                         <th class="text-center">representante</th>
+                                        <th class="text-center">acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,7 +120,57 @@ if (isset($_SESSION["usu_id"])) {
                 </div>
             </main>
 
-            <?php require_once("../MainFooter/MainFooter.php"); ?>
+            <div id="modaledit" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar empresa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="#" enctype="multipart/form-data" onsubmit="return false">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input type="text" id="emp_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Empresa</label>
+                                        <input type="text" class="form-control" id="emp_nombre_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">RUC</label>
+                                        <input type="text" class="form-control" id="emp_ruc_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Correo</label>
+                                        <input type="text" class="form-control" id="emp_correo_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Descripción</label>
+                                        <input type="text" class="form-control" id="emp_descripcion_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Dirección</label>
+                                        <input type="text" class="form-control" id="emp_direccion_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Representante</label>
+                                        <input type="text" class="form-control" id="emp_representante_edit">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-primary" onclick="Actualizar_empresa()">Actualizar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php require_once("../MainFooter/MainFooter.php"); ?>
 
         </div>
 
