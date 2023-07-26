@@ -56,11 +56,13 @@
                             <table id="partes_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
                                 <thead>
                                     <tr>
-                                        <th class="text-center" style="width: 10%;">Ticket</th>
-                                        <th class="text-center" style="width: 15%;">Fecha</th>
-                                        <th class="d-none d-sm-table-cell text-center" style="width: 20%;">Asunto</th>
-                                        <th class="d-none d-sm-table-cell text-center" style="width: 65%;">Descripción</th>
-                                        <th class="text-center" style="width: 15%;">Detalle</th>
+                                        <th class="text-center">Ticket</th>
+                                        <th class="text-center">Asunto</th>
+                                        <th class="text-center">Presupuesto</th>
+                                        <th class="text-center">Descripción</th>
+                                        <th class="text-center">Empresa</th>
+                                        <th class="text-center">Estado</th>
+                                        <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,11 +104,71 @@
                 </div>
             </div>
 
+            <div id="modaleditpartes" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Licitación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="#" enctype="multipart/form-data" onsubmit="return false">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="text" id="part_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="text" id="proc_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="text" id="tip_id_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="text" id="fech_inicio_edit" hidden>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="text" id="fech_fin_edit" hidden>
+                                    </div>
+                                    
+                                    <div class="col-lg-12">
+                                        <label for="">Asunto</label>
+                                        <input type="text" class="form-control" id="part_asun_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Presupuesto</label>
+                                        <input type="text" class="form-control" id="part_presu_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Descripción</label>
+                                        <input type="text" class="form-control" id="part_desc_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Empresa</label>
+                                        <input type="text" class="form-control" id="emp_id_edit">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Estado</label>
+                                        <input type="text" class="form-control" id="est_id_edit">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-primary" onclick="Actualizar_partes()">Actualizar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         <?php require_once("../MainFooter/MainFooter.php");?> 
 
         </div>
 
         <?php require_once("../MainJs/MainJs.php");?> 
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script type="text/javascript" src="consultarstatus.js"></script>
 
     </body>

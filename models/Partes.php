@@ -99,12 +99,16 @@
             return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
         }
 
-        public function delete_partesdetalle($partd_id){
+        public function delete_partesdetalle($part_id, $est){
             $conectar=parent::conexion();
             parent::set_names();
-            $sql="update tm_detallepartes set est=0 where partd_id=?;";
+            $sql="update tm_detallepartes set
+                    est=?
+                where
+                    part_id=?;";
             $sql=$conectar->prepare($sql);
-            $sql->bindvalue(1, $partd_id);
+            $sql->bindvalue(1, $est);
+            $sql->bindvalue(2, $part_id);
             $sql->execute();
         }  
 
@@ -116,6 +120,23 @@
             $sql->bindvalue(1, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
+        }
+
+        public function delete_licitacion(
+            $part_id,
+            $est
+        ){
+            $conectar=parent::conexion();
+            parent::set_names();
+            $sql2="update tm_partes set
+                    est=?
+                where
+                 part_id=?;";
+            $sql2=$conectar->prepare($sql2);
+            $sql2->bindvalue(1, $est);
+            $sql2->bindvalue(2, $part_id);
+            $sql2->execute();
+
         }
 
     }
