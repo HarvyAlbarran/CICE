@@ -1,15 +1,17 @@
 <?php
-  require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["usu_id"])){ 
+require_once("../../config/conexion.php");
+if (isset($_SESSION["usu_id"])) {
 ?>
-<!doctype html>
-<html lang="en" class="no-focus">
+    <!doctype html>
+    <html lang="en" class="no-focus">
+
     <head>
-        <?php require_once("../MainHead/MainHead.php");?> 
+        <?php require_once("../MainHead/MainHead.php"); ?>
 
         <title>Consultar Status | Consultoría CICE</title>
 
     </head>
+
     <body>
         <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed  sidebar-inverse">
             <aside id="side-overlay">
@@ -35,15 +37,15 @@
             <nav id="sidebar">
                 <div id="sidebar-scroll">
                     <div class="sidebar-content">
-                        <?php require_once("../MainSidebar/MainSidebar.php");?> 
-                        
-                        <?php require_once("../MainMenu/MainMenu.php");?> 
+                        <?php require_once("../MainSidebar/MainSidebar.php"); ?>
+
+                        <?php require_once("../MainMenu/MainMenu.php"); ?>
                     </div>
 
                 </div>
             </nav>
 
-            <?php require_once("../MainHeader/MainHeader.php");?> 
+            <?php require_once("../MainHeader/MainHeader.php"); ?>
 
             <!--Contenido -->
             <main id="main-container">
@@ -81,7 +83,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title">Detalle de Documentos</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
@@ -93,7 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  
+
                                 </tbody>
                             </table>
                         </div>
@@ -131,7 +133,7 @@
                                     <div class="col-lg-3">
                                         <input type="text" id="fech_fin_edit" hidden>
                                     </div>
-                                    
+
                                     <div class="col-lg-12">
                                         <label for="">Asunto</label>
                                         <input type="text" class="form-control" id="part_asun_edit">
@@ -146,11 +148,13 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="">Empresa</label>
-                                        <input type="text" class="form-control" id="emp_id_edit">
+                                        <select class="form-control" id="emp_id_editar">
+                                        </select>
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="">Estado</label>
-                                        <input type="text" class="form-control" id="est_id_edit">
+                                        <select class="form-control" id="est_id_editar">
+                                        </select>
                                     </div>
                                 </div>
                         </div>
@@ -162,19 +166,20 @@
                 </div>
             </div>
 
-        <?php require_once("../MainFooter/MainFooter.php");?> 
+            <?php require_once("../MainFooter/MainFooter.php"); ?>
 
         </div>
 
-        <?php require_once("../MainJs/MainJs.php");?> 
-        
+        <?php require_once("../MainJs/MainJs.php"); ?>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script type="text/javascript" src="consultarstatus.js"></script>
 
     </body>
-</html>
+
+    </html>
 <?php
-  } else {
-    header("Location:".Conectar::ruta()."index.php");
-  }
+} else {
+    header("Location:" . Conectar::ruta() . "index.php");
+}
 ?>

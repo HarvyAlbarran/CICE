@@ -89,7 +89,7 @@
         break;
 
         case "listar":
-            $datos=$partes->list_partes($_POST["usu_id"]);
+            $datos=$partes->list_partes();
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
@@ -97,8 +97,8 @@
                 $sub_array[] = $row["part_asun"];
                 $sub_array[] = $row["part_presu"];
                 $sub_array[] = $row["part_desc"];
-                $sub_array[] = $row["emp_id"];
-                $sub_array[] = $row["est_id"];
+                $sub_array[] = $row["emp_nombre"];
+                $sub_array[] = $row["est_nom"];
                 
                 $sub_array[] = '<button type="button" onClick="ver('.$row["part_id"].');"  id="'.$row["part_id"].'" class="btn btn-outline-info btn-icon"><div><i class="fa fa-database"></i></div></button> <button type="button" class="edit btn btn-outline-success btn-icon"><div><i class="fa fa-pencil"></i></div></button> <button type="button" class="delete btn btn-outline-danger btn-icon"><div><i class="fa fa-trash"></i></div></button>';
 
