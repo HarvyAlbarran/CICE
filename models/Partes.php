@@ -112,12 +112,26 @@
             $sql->execute();
         }  
 
-        public function list_partes($usu_id){
+        public function list_partes(){
             $conectar=parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM tm_partes WHERE usu_id=? and est=1;";
+            $sql="SELECT 
+            tm_partes.part_id,
+            tm_partes.part_asun,
+            tm_partes.part_presu,
+            tm_partes.part_desc,
+            tm_empresas.emp_nombre,
+            tm_estado.est_nom,
+            tm_partes.proc_id,
+            tm_partes.tip_id,
+            tm_partes.fech_inicio,
+            tm_partes.fech_fin
+            FROM tm_partes 
+            INNER JOIN tm_empresas ON tm_partes.emp_id  = tm_empresas.emp_id
+            INNER JOIN tm_estado ON tm_partes.est_id  = tm_estado.est_id
+            WHERE tm_partes.est=1;";
+
             $sql=$conectar->prepare($sql);
-            $sql->bindvalue(1, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchall(pdo::FETCH_ASSOC);
         }

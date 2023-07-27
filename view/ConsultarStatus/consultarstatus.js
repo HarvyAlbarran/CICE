@@ -7,14 +7,18 @@ function init(){
 var tabla;
 
 $(document).ready(function(){
+
+    list_combo_empresa();
+    list_combo_estado();
+
+
     tabla= $('#partes_data').DataTable({
         "aProcessing": true,//Activamos el procesamiento del datatables
         "aServerSide": true,//Paginación y filtrado realizados por el servidor
         dom: 'Bfrtip',//Definimos los elementos del control de tabla
         "ajax":{
         url:"../../controller/partes.php?op=listar",
-        type : "post",
-        data:{usu_id:usu_id},						
+        type : "post",					
             error: function(e){
                 console.log(e.responseText);
             },
@@ -115,8 +119,9 @@ $('#partes_data').on('click', '.edit', function () {
     document.getElementById('part_asun_edit').value = data[1];
     document.getElementById('part_presu_edit').value = data[2];
     document.getElementById('part_desc_edit').value = data[3];
-    document.getElementById('emp_id_edit').value = data[4];
-    document.getElementById('est_id_edit').value = data[5];
+    
+    $("#emp_nombre").val(data[4]).trigger('change');
+    $("#est_nom").val(data[5]).trigger('change');
 
     document.getElementById('proc_id_edit').value = data[7];
     document.getElementById('tip_id_edit').value = data[8];
@@ -154,8 +159,8 @@ function Actualizar_partes() {
     var part_asun = document.getElementById('part_asun_edit').value;
     var part_presu = document.getElementById('part_presu_edit').value;
     var part_desc = document.getElementById('part_desc_edit').value;
-    var emp_id = document.getElementById('emp_id_edit').value;
-    var est_id = document.getElementById('est_id_edit').value;
+    var emp_id = document.getElementById('emp_id_editar').value;
+    var est_id = document.getElementById('est_id_editar').value;
 
     var proc_id = document.getElementById('proc_id_edit').value;
     var tip_id = document.getElementById('tip_id_edit').value;
@@ -248,5 +253,61 @@ function Eliminar_licitacion(part_id) {
 
     });
 }
+
+function list_combo_empresa(){
+
+    $.ajax({
+
+        url:"../../controller/partes.php?op=list_combo_empresa",
+        type:'POST',
+
+    }).done(function(data){
+
+        data = JSON.parse(data);
+        cadena = "";
+
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                cadena += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                
+            }
+
+            document.getElementById('emp_id_editar').innerHTML= cadena;
+
+        }else{
+            document.getElementById('emp_id_editar').innerHTML= "No se encontraron datos";
+        }
+
+
+    })
+
+}
+
+function list_combo_estado(){
+     $.ajax({
+
+        url:"../../controller/partes.php?op=list_combo_estado",
+        type:'POST',
+
+    }).done(function(data){
+
+        data = JSON.parse(data);
+        cadena = "";
+
+        if (data.length>0) {
+            for (var i = 0; i < data.length; i++) {
+                cadena += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                
+            }
+
+            document.getElementById('est_id_editar').innerHTML= cadena;
+
+        }else{
+            document.getElementById('est_id_editar').innerHTML= "No se encontraron datos";
+        }
+
+
+    })
+};
 
 init();
